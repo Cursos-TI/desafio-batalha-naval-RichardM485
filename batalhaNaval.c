@@ -1,40 +1,80 @@
-#include <stdio.h>
-
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+// Nível Novato
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+#include <stdio.h>
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+int tabuleiro[10][10] = {0};
+char index_Coluna[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+int index_Linha[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+//Declaração de variáveis globais para o tabuleiro e índices.
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+void exibirtabuleiro(){
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+    //função para exibir o tabuleiro
+    printf("   ");
+    for(int i = 0; i < 10; i++){
+        printf(" %c", index_Coluna[i]);
+    }
+    printf("\n");
+    for(int i = 0; i < 10; i++){
+        printf("%2d ", index_Linha[i]);
+        for (int j = 0; j < 10; j++){
+            printf("%2d", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+}
+int main(){
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+    int linha, coluna;
 
+    printf("Batalha Naval - Tabuleiro Inicial\n");
+    exibirtabuleiro();
+    printf("\n");
+    printf("Escolha a posição que deseja colocar seu navio (linha e coluna)\n");
+    printf("Sendo que linha varia de 1 a 10 e coluna de A a J (Ex de preechimento: 1  1)\n");
+    printf("Voce escolheu a posição: A1...\n");
+    printf("Esse navio deverá ocupar 3 posições consecutivas na horizontal:\n");
+    for (int i = 0; i < 3; i++){
+        scanf("%d %d", &linha, &coluna);
+        if (linha > 10 || linha < 1 || coluna > 10 || coluna < 1){
+            printf("Posição inválida! Tente novamente.\n");
+            i--; // Decrementa i para repetir a iteração
+            continue;
+        }else if(tabuleiro[linha - 1][coluna - 1] == 3){
+            printf("Posição já ocupada! Escolha outra posição.\n");
+            i--; // Decrementa i para repetir a iteração
+            continue;
+        }
+        tabuleiro[linha - 1][coluna - 1] = 3;
+    }
+    // Coloca um navio na posição escolhida e define o valor 3 para representar o navio
+    // Valida a posição se já foi usada e se o valor escolhido não é maior que o tabuleiro
+    // Exibir o tabuleiro atualizado
+    printf("\nBatalha Naval - Tabuleiro Atualizado\n");
+    exibirtabuleiro();
+    printf("\n");
+    printf("Seguindo a mesma lógica de preenchimento anterior.\n");
+    printf("Agora posicione um navio que ocupe 3 posições consecutivas na vertical:\n");
+    for (int i = 0; i < 3; i++){
+        scanf("%d %d", &linha, &coluna);
+        if (linha > 10 || linha < 1 || coluna > 10 || coluna < 1){
+            printf("Posição inválida! Tente novamente.\n");
+            i--; // Decrementa i para repetir a iteração
+            continue;
+        }else if(tabuleiro[linha - 1][coluna - 1] == 3){
+            printf("Posição já ocupada! Escolha outra posição.\n");
+            i--; // Decrementa i para repetir a iteração
+            continue;
+        }
+        tabuleiro[linha - 1][coluna - 1] = 3;
+    }
+    // Coloca outro navio na posição escolhida e define o valor 3 para representar o navio
+    // Valida a posição se já foi usada e se o valor escolhido não é maior que o tabuleiro
+    // Exibir o tabuleiro atualizado
+    printf("\nBatalha Naval - Tabuleiro Atualizado\n");
+    exibirtabuleiro();
+    printf("\n");
     return 0;
 }
